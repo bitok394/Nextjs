@@ -32,7 +32,7 @@ export default function Signup() {
         setSuccess('')
 
         try {
-            const response = await fetch('/backend/api/auth/signup', {
+            const response = await fetch('/backEnd/api/auth/signup', {
                 method:'POST',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify(formData)
@@ -62,16 +62,17 @@ export default function Signup() {
                 {success && (
                     <div className='mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg'>{success}</div>
                 )}
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className='mb-4'>
                         <label className='block text-gray-700 mb-2'>Name</label>
                         <input 
                         type='text'
                         name='name'
                         value={formData.name}
-                        disabaled={loading}
+                        onChange={handleChange}
+                        disabled={loading}
                         required
-                        className='w-full px-3 py-2 border border-gray-300 rounded-lg'
+                        className='w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700'
                         
                         />
                     </div>
@@ -80,10 +81,11 @@ export default function Signup() {
                         <input 
                         type='text'
                         name='email'
+                        onChange={handleChange}
                         value={formData.email}
                         disabled={loading}
                         required
-                        className='w-full px-3 py-2 border border-gray-300 rounded-lg'
+                        className='w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700'
                         
                         />
                     </div>
@@ -93,13 +95,14 @@ export default function Signup() {
                         type='text'
                         name='password'
                         value={formData.password}
+                        onChange={handleChange}
                         disabled={loading}
                         required
-                        className='w-full px-3 py-2 border border-gray-300 rounded-lg'
+                        className='w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-700'
                         
                         />
                     </div>
-                    <button type='submit' className='w-full bg-blue-600 text-white py-2 px-4 rounded-lg'>{loading?'creating account...':"SignUp"}</button>
+                    <button type='submit' disabled= {loading}className='w-full bg-blue-600 text-white py-2 px-4 rounded-lg'>{loading?'creating account...':"SignUp"}</button>
                 </form>
                 <div className='mt-6 text-center '>
                     <p className='text-gray-600'>Already have an account?  <a href='/login' className='text-blue-600 hover:underline'>Login</a>  </p>
