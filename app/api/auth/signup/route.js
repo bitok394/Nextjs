@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from 'bcryptjs'
-import { PrismaClient } from "@/src/generated/prisma";
+import { PrismaClient } from "@/generated/prisma";
 
 const prisma = new PrismaClient()
 
@@ -32,7 +32,7 @@ export async function POST (request) {
         // set saltrounds fro brycpt hashing to 12
         const saltRounds = 12 
         // hash the password with the specified saltRound
-        const hashedPassword = await bcrypt.hashed(password, saltRounds)
+        const hashedPassword = await bcrypt.hash(password, saltRounds)
         // create anew user in the db
         const newUser = await prisma.user.create({
             data:{
@@ -66,6 +66,6 @@ export async function POST (request) {
                 {status:500}
             )
     } finally {
-        await prisma.$disconnect
+        await prisma.$disconnect()
     }
 }

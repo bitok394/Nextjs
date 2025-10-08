@@ -30,7 +30,7 @@ export default function Login() {
         setSuccess('')
 
         try {
-            const response = await fetch('/backEnd/api/auth/login', {
+            const response = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)

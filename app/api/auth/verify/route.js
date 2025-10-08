@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import jwt from 'jsonwebtoken';
-import { PrismaClient } from "@/src/generated/prisma";
+import { PrismaClient } from "@/generated/prisma";
 
 const prisma = new PrismaClient()
 
@@ -55,6 +55,6 @@ export async function GET (request) {
                     {status:500}
                 )
     }finally {
-            await prisma.$disconnect
+            await prisma.$disconnect()
         }
 }
